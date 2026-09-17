@@ -1,76 +1,904 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Unlock & Learn Pro</title>
-<style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#eef2f7;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
-.card{background:#fff;max-width:800px;width:100%;border-radius:28px;padding:32px;box-shadow:0 12px 40px rgba(0,0,0,.08)}
-.badge{display:inline-block;background:#eef2ff;color:#4338ca;padding:6px 12px;border-radius:999px;font-weight:600}
-.word{font-size:clamp(42px,8vw,84px);font-weight:800;margin:18px 0 8px}
-.pos{color:#4f46e5;font-weight:700}
-.meaning{font-size:1.3rem;margin-top:18px}
-.hindi{margin-top:10px;font-size:1.1rem}
-.example{margin-top:20px;background:#f8faff;padding:18px;border-left:4px solid #4f46e5;border-radius:12px}
-.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-button{border:none;padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer}
-.primary{background:#111827;color:white}.secondary{background:#e5e7eb}
-.stats{margin-top:18px;color:#6b7280}
-</style>
-</head>
-<body>
-<div class="card">
-<div class="badge">📘 Unlock & Learn Pro</div>
-<div id="content"></div>
-<div class="row">
-<button class="primary" onclick="nextWord()">Next Word</button>
-<button class="secondary" onclick="speakWord()">🔊 Pronounce</button>
-<button class="secondary" onclick="toggleMeaning()">🙈 Hide/Show Meaning</button>
-</div>
-<div class="stats" id="stats"></div>
-</div>
-<script>
-const words=[
-["Pragmatic","adjective","Practical and focused on what works.","व्यावहारिक","We need a pragmatic solution."],
-["Obfuscate","verb","To make something difficult to understand.","अस्पष्ट करना","The wording seemed to obfuscate the issue."],
-["Resilient","adjective","Able to recover quickly from difficulty.","लचीला / दृढ़","The team remained resilient."],
-["Astute","adjective","Very perceptive and clever.","चतुर","She made an astute observation."],
-["Meticulous","adjective","Very careful and precise.","सूक्ष्म और सावधान","He was meticulous in his review."],
-["Ubiquitous","adjective","Present everywhere.","सर्वव्यापी","Smartphones are ubiquitous today."],
-["Tenacious","adjective","Persistent and determined.","दृढ़","Her tenacious effort paid off."],
-["Eloquent","adjective","Fluent and persuasive.","वाक्पटु","She gave an eloquent speech."]
-];
-let current=0, hidden=false;
-let learned=Number(localStorage.getItem("learned")||0);
+  <meta charset="UTF-8">
 
-function dayIndex(){
- const start=new Date("2025-01-01");
- const now=new Date();
- return Math.floor((now-start)/(1000*60*60*24));
-}
-function render(){
- const w=words[current];
- document.getElementById("content").innerHTML=`
- <div class="word">${w[0]}</div>
- <div class="pos">${w[1]}</div>
- <div class="meaning">${hidden?"••••••••":w[2]}</div>
- <div class="hindi">${hidden?"":("🇮🇳 "+w[3])}</div>
- <div class="example">${hidden?"Meaning hidden":("💬 "+w[4])}</div>`;
- document.getElementById("stats").textContent=`Words explored: ${learned}`;
-}
-function nextWord(){
- current=Math.floor(Math.random()*words.length);
- learned++;
- localStorage.setItem("learned", learned);
- render();
-}
-function toggleMeaning(){hidden=!hidden;render();}
-function speakWord(){
- speechSynthesis.speak(new SpeechSynthesisUtterance(words[current][0]));
-}
-current=dayIndex()%words.length; // word of the day
-render();
+  <meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1,
+             maximum-scale=1,
+             viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#0b1020">
+
+  <!-- iPad / iPhone Home Screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Vocabulary">
+
+  <title>Vocabulary</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      color: white;
+      background: #070b14;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(20px, env(safe-area-inset-top))
+        max(20px, env(safe-area-inset-right))
+        max(20px, env(safe-area-inset-bottom))
+        max(20px, env(safe-area-inset-left));
+
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          #354b82 0%,
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 85% 85%,
+          #26365f 0%,
+          transparent 35%
+        ),
+        linear-gradient(
+          145deg,
+          #0b1020,
+          #080c17
+        );
+    }
+
+    .app {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 500px;
+
+      padding: 34px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      border-radius: 34px;
+
+      background: rgba(255, 255, 255, 0.075);
+
+      border: 1px solid rgba(255, 255, 255, 0.13);
+
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+      cursor: pointer;
+
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Decorative glow */
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 220px;
+      height: 220px;
+
+      top: -100px;
+      right: -80px;
+
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.07);
+
+      filter: blur(25px);
+
+      pointer-events: none;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .label {
+      font-size: 13px;
+      font-weight: 600;
+
+      letter-spacing: 0.16em;
+
+      text-transform: uppercase;
+
+      opacity: 0.55;
+    }
+
+    .brain {
+      font-size: 25px;
+      opacity: 0.8;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+
+      padding-top: 30px;
+    }
+
+    .word {
+      margin: 0;
+
+      font-size: clamp(
+        48px,
+        12vw,
+        92px
+      );
+
+      line-height: 0.95;
+
+      font-weight: 800;
+
+      letter-spacing: -0.055em;
+
+      overflow-wrap: anywhere;
+
+      text-shadow:
+        0 4px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .pronunciation {
+      margin-top: 13px;
+
+      font-size: 15px;
+
+      opacity: 0.5;
+
+      font-style: italic;
+    }
+
+    .meaning {
+      margin-top: 24px;
+
+      max-width: 620px;
+
+      font-size: clamp(
+        20px,
+        4vw,
+        28px
+      );
+
+      line-height: 1.35;
+
+      font-weight: 450;
+
+      opacity: 0.9;
+    }
+
+    .example {
+      margin-top: 25px;
+
+      padding: 18px 20px;
+
+      border-radius: 19px;
+
+      background: rgba(
+        255,
+        255,
+        255,
+        0.065
+      );
+
+      border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.07
+      );
+
+      font-size: 17px;
+
+      line-height: 1.55;
+
+      color: rgba(
+        255,
+        255,
+        255,
+        0.78
+      );
+    }
+
+    .example span {
+      opacity: 0.5;
+      font-size: 13px;
+      display: block;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .bottom {
+      position: relative;
+      z-index: 2;
+
+      margin-top: 30px;
+    }
+
+    .progress-container {
+      height: 4px;
+
+      width: 100%;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      background: rgba(
+        255,
+        255,
+        255,
+        0.09
+      );
+    }
+
+    .progress {
+      height: 100%;
+
+      width: 0%;
+
+      border-radius: inherit;
+
+      background: rgba(
+        255,
+        255,
+        255,
+        0.65
+      );
+
+      transition:
+        width 1s linear;
+    }
+
+    .footer {
+      margin-top: 15px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      font-size: 13px;
+
+      opacity: 0.48;
+    }
+
+    .tap {
+      text-align: right;
+    }
+
+    /* Word transition */
+
+    .animate {
+      animation:
+        wordIn 0.45s ease;
+    }
+
+    @keyframes wordIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Small screens */
+
+    @media (max-width: 500px) {
+
+      .card {
+        min-height: 470px;
+        padding: 26px;
+        border-radius: 28px;
+      }
+
+      .content {
+        padding-top: 25px;
+      }
+
+      .meaning {
+        margin-top: 20px;
+      }
+
+      .example {
+        font-size: 15px;
+      }
+    }
+
+    /* iPad landscape */
+
+    @media (min-width: 700px) {
+
+      .card {
+        min-height: 540px;
+        padding: 42px;
+      }
+    }
+
+    /* Reduce animation if user prefers */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .animate {
+        animation: none;
+      }
+
+      .progress {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app">
+
+    <section
+      class="card"
+      id="card"
+      aria-label="Vocabulary card"
+    >
+
+      <div class="header">
+
+        <div class="label">
+          Word of the Moment
+        </div>
+
+        <div class="brain">
+          🧠
+        </div>
+
+      </div>
+
+
+      <div
+        class="content"
+        id="content"
+      >
+
+        <h1
+          class="word"
+          id="word"
+        >
+          Loading...
+        </h1>
+
+        <div
+          class="pronunciation"
+          id="pronunciation"
+        ></div>
+
+        <div
+          class="meaning"
+          id="meaning"
+        ></div>
+
+        <div
+          class="example"
+          id="example"
+        ></div>
+
+      </div>
+
+
+      <div class="bottom">
+
+        <div class="progress-container">
+
+          <div
+            class="progress"
+            id="progress"
+          ></div>
+
+        </div>
+
+        <div class="footer">
+
+          <div id="timer">
+            Next word in 30s
+          </div>
+
+          <div
+            class="tap"
+          >
+            Tap for next
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+<script>
+
+  /*
+   * =====================================
+   * VOCABULARY DATABASE
+   * =====================================
+   *
+   * Add more words here using:
+   *
+   * [
+   *   "word",
+   *   "pronunciation",
+   *   "meaning",
+   *   "example"
+   * ]
+   */
+
+  const words = [
+
+    [
+      "Ubiquitous",
+      "/juːˈbɪkwɪtəs/",
+      "Present, appearing, or found everywhere.",
+      "Smartphones have become ubiquitous in modern life."
+    ],
+
+    [
+      "Ephemeral",
+      "/ɪˈfemərəl/",
+      "Lasting for a very short time.",
+      "The beauty of the sunset was ephemeral."
+    ],
+
+    [
+      "Pragmatic",
+      "/præɡˈmætɪk/",
+      "Dealing with problems in a practical way.",
+      "We took a pragmatic approach to the migration."
+    ],
+
+    [
+      "Resilient",
+      "/rɪˈzɪliənt/",
+      "Able to recover quickly from difficulty.",
+      "The resilient platform handled the traffic spike."
+    ],
+
+    [
+      "Meticulous",
+      "/məˈtɪkjələs/",
+      "Very careful and precise.",
+      "She was meticulous when reviewing the deployment."
+    ],
+
+    [
+      "Ambiguous",
+      "/æmˈbɪɡjuəs/",
+      "Open to more than one interpretation.",
+      "The requirement was ambiguous, so we clarified it."
+    ],
+
+    [
+      "Concise",
+      "/kənˈsaɪs/",
+      "Brief but complete and clear.",
+      "Give the interviewer a concise explanation."
+    ],
+
+    [
+      "Robust",
+      "/roʊˈbʌst/",
+      "Strong and unlikely to fail.",
+      "The team built a robust CI/CD pipeline."
+    ],
+
+    [
+      "Nuance",
+      "/ˈnuːɑːns/",
+      "A subtle difference or distinction.",
+      "There is an important nuance in that design."
+    ],
+
+    [
+      "Inevitable",
+      "/ɪnˈevɪtəbəl/",
+      "Certain to happen.",
+      "Some infrastructure changes are inevitable as systems grow."
+    ],
+
+    [
+      "Versatile",
+      "/ˈvɜːrsətəl/",
+      "Able to adapt to many different uses.",
+      "Python is a versatile language for automation."
+    ],
+
+    [
+      "Coherent",
+      "/koʊˈhɪrənt/",
+      "Logical, clear, and consistent.",
+      "Present your architecture in a coherent sequence."
+    ],
+
+    [
+      "Scrutinize",
+      "/ˈskruːtənaɪz/",
+      "Examine something very carefully.",
+      "We scrutinized the logs before changing production."
+    ],
+
+    [
+      "Proactive",
+      "/proʊˈæktɪv/",
+      "Taking action before a problem occurs.",
+      "Proactive monitoring can reveal issues early."
+    ],
+
+    [
+      "Transient",
+      "/ˈtrænziənt/",
+      "Temporary or lasting only a short time.",
+      "The pod failure was transient."
+    ],
+
+    [
+      "Leverage",
+      "/ˈlevərɪdʒ/",
+      "To use something to maximum advantage.",
+      "We can leverage automation to reduce manual effort."
+    ],
+
+    [
+      "Obsolete",
+      "/ˌɑːbsəˈliːt/",
+      "No longer useful because something newer exists.",
+      "The legacy deployment process is now obsolete."
+    ],
+
+    [
+      "Feasible",
+      "/ˈfiːzəbəl/",
+      "Possible and practical to do.",
+      "The proposed migration is technically feasible."
+    ],
+
+    [
+      "Scalable",
+      "/ˈskeɪləbəl/",
+      "Able to grow while continuing to work effectively.",
+      "We designed a scalable platform for multiple teams."
+    ],
+
+    [
+      "Efficient",
+      "/ɪˈfɪʃənt/",
+      "Achieving results with minimal waste of time or resources.",
+      "Automation makes the deployment process more efficient."
+    ],
+
+    [
+      "Elaborate",
+      "/ɪˈlæbərət/",
+      "Containing many carefully arranged details.",
+      "The architect provided an elaborate design."
+    ],
+
+    [
+      "Mitigate",
+      "/ˈmɪtɪɡeɪt/",
+      "To reduce the severity or impact of something.",
+      "We added retries to mitigate temporary failures."
+    ],
+
+    [
+      "Redundant",
+      "/rɪˈdʌndənt/",
+      "Present in addition to what is necessary, often for reliability.",
+      "We use redundant nodes to improve availability."
+    ],
+
+    [
+      "Obscure",
+      "/əbˈskjʊr/",
+      "Not easily understood or known.",
+      "The root cause was hidden behind an obscure configuration."
+    ],
+
+    [
+      "Proficient",
+      "/prəˈfɪʃənt/",
+      "Competent or skilled at something.",
+      "She became proficient in Kubernetes automation."
+    ],
+
+    [
+      "Adverse",
+      "/ˈædvɜːrs/",
+      "Having a harmful or unfavorable effect.",
+      "The change had an adverse impact on latency."
+    ],
+
+    [
+      "Validate",
+      "/ˈvælɪdeɪt/",
+      "To check that something is correct or acceptable.",
+      "The pipeline validates the Terraform configuration."
+    ],
+
+    [
+      "Diligent",
+      "/ˈdɪlɪdʒənt/",
+      "Showing careful and persistent effort.",
+      "He was diligent in reviewing production changes."
+    ],
+
+    [
+      "Versus",
+      "/ˈvɜːrsəs/",
+      "Against or compared with.",
+      "We compared blue-green deployment versus canary deployment."
+    ],
+
+    [
+      "Incremental",
+      "/ˌɪŋkrəˈmentəl/",
+      "Done gradually in small steps.",
+      "We made incremental improvements to the platform."
+    ]
+
+  ];
+
+
+  /*
+   * =====================================
+   * SETTINGS
+   * =====================================
+   */
+
+  const CHANGE_INTERVAL = 30;
+
+  let currentIndex =
+    Number(
+      localStorage.getItem("vocabularyIndex")
+    );
+
+  if (
+    Number.isNaN(currentIndex) ||
+    currentIndex >= words.length
+  ) {
+    currentIndex = 0;
+  }
+
+  let secondsRemaining = CHANGE_INTERVAL;
+
+
+  /*
+   * =====================================
+   * DOM ELEMENTS
+   * =====================================
+   */
+
+  const card =
+    document.getElementById("card");
+
+  const content =
+    document.getElementById("content");
+
+  const word =
+    document.getElementById("word");
+
+  const pronunciation =
+    document.getElementById("pronunciation");
+
+  const meaning =
+    document.getElementById("meaning");
+
+  const example =
+    document.getElementById("example");
+
+  const timer =
+    document.getElementById("timer");
+
+  const progress =
+    document.getElementById("progress");
+
+
+  /*
+   * =====================================
+   * DISPLAY WORD
+   * =====================================
+   */
+
+  function displayWord() {
+
+    const item =
+      words[currentIndex];
+
+    word.textContent =
+      item[0];
+
+    pronunciation.textContent =
+      item[1];
+
+    meaning.textContent =
+      item[2];
+
+    example.innerHTML =
+      `
+        <span>Example</span>
+        “${item[3]}”
+      `;
+
+    content.classList.remove("animate");
+
+    /*
+     * Force browser to restart animation
+     */
+
+    void content.offsetWidth;
+
+    content.classList.add("animate");
+
+    localStorage.setItem(
+      "vocabularyIndex",
+      currentIndex
+    );
+
+    secondsRemaining =
+      CHANGE_INTERVAL;
+
+    updateTimer();
+
+  }
+
+
+  /*
+   * =====================================
+   * NEXT WORD
+   * =====================================
+   */
+
+  function nextWord() {
+
+    currentIndex++;
+
+    if (
+      currentIndex >= words.length
+    ) {
+      currentIndex = 0;
+    }
+
+    displayWord();
+
+  }
+
+
+  /*
+   * =====================================
+   * TIMER
+   * =====================================
+   */
+
+  function updateTimer() {
+
+    timer.textContent =
+      `Next word in ${secondsRemaining}s`;
+
+    const percentage =
+      (
+        (CHANGE_INTERVAL -
+          secondsRemaining)
+        /
+        CHANGE_INTERVAL
+      ) * 100;
+
+    progress.style.width =
+      `${percentage}%`;
+
+  }
+
+
+  /*
+   * =====================================
+   * AUTOMATIC CHANGE
+   * =====================================
+   */
+
+  setInterval(() => {
+
+    secondsRemaining--;
+
+    if (
+      secondsRemaining <= 0
+    ) {
+
+      nextWord();
+
+    } else {
+
+      updateTimer();
+
+    }
+
+  }, 1000);
+
+
+  /*
+   * =====================================
+   * TAP TO CHANGE
+   * =====================================
+   */
+
+  card.addEventListener(
+    "click",
+    () => {
+
+      nextWord();
+
+    }
+  );
+
+
+  /*
+   * =====================================
+   * START
+   * =====================================
+   */
+
+  displayWord();
+
 </script>
+
 </body>
 </html>
