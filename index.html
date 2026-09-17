@@ -3,526 +3,1042 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-               maximum-scale=1.0, user-scalable=no">
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Word of the Day">
+<meta name="theme-color" content="#0f172a">
 
-<title>Vocabulary</title>
+<title>Daily Vocabulary</title>
 
 <style>
     * {
         box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
     }
 
     body {
         margin: 0;
         min-height: 100vh;
-        background: #f5f5f7;
-        font-family: -apple-system, BlinkMacSystemFont,
-                     "SF Pro Display", Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                     "Segoe UI", sans-serif;
+
+        background:
+            radial-gradient(circle at top left, #334155, transparent 45%),
+            radial-gradient(circle at bottom right, #1e3a8a, transparent 45%),
+            #020617;
+
+        color: white;
+
         display: flex;
         justify-content: center;
         align-items: center;
+
         padding: 20px;
     }
 
-    .card {
+    .container {
         width: 100%;
-        max-width: 600px;
-        background: white;
-        border-radius: 28px;
-        padding: 30px;
-        box-shadow: 0 10px 35px rgba(0,0,0,.10);
+        max-width: 650px;
     }
 
-    .label {
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #777;
-        margin-bottom: 10px;
-    }
-
-    #word {
-        font-size: 42px;
-        font-weight: 750;
-        margin: 0 0 8px;
-        word-break: break-word;
-    }
-
-    #phonetic {
-        font-size: 18px;
-        color: #777;
-        margin-bottom: 22px;
-    }
-
-    .part {
-        display: inline-block;
-        background: #eee;
-        border-radius: 12px;
-        padding: 6px 10px;
-        font-size: 14px;
+    .header {
+        text-align: center;
         margin-bottom: 18px;
     }
 
-    .section {
-        margin-top: 18px;
+    .header-title {
+        font-size: 15px;
+        letter-spacing: 3px;
+        opacity: 0.65;
+        font-weight: 600;
     }
 
-    .section-title {
-        font-size: 13px;
+    .card {
+        position: relative;
+
+        background: rgba(255,255,255,0.10);
+        border: 1px solid rgba(255,255,255,0.15);
+
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+
+        border-radius: 30px;
+
+        padding: 32px;
+
+        box-shadow:
+            0 25px 80px rgba(0,0,0,0.35);
+
+        min-height: 570px;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .category {
+        display: inline-block;
+        align-self: flex-start;
+
+        padding: 7px 13px;
+
+        border-radius: 20px;
+
+        background: rgba(255,255,255,0.10);
+
+        font-size: 12px;
+        font-weight: 600;
+
+        letter-spacing: 1px;
+
+        opacity: 0.8;
+    }
+
+    .word {
+        font-size: clamp(48px, 10vw, 76px);
+        font-weight: 800;
+
+        line-height: 1;
+
+        margin-top: 35px;
+        margin-bottom: 10px;
+
+        letter-spacing: -2px;
+
+        word-break: break-word;
+    }
+
+    .phonetic {
+        font-size: 18px;
+        opacity: 0.65;
+        margin-bottom: 25px;
+    }
+
+    .part-of-speech {
+        font-size: 15px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #888;
-        margin-bottom: 7px;
+
+        letter-spacing: 1px;
+
+        opacity: 0.7;
+
+        margin-bottom: 10px;
     }
 
     .definition {
-        font-size: 20px;
+        font-size: 23px;
         line-height: 1.45;
+
+        margin-bottom: 25px;
     }
 
     .example {
         font-size: 17px;
-        line-height: 1.45;
-        color: #555;
-        font-style: italic;
+        line-height: 1.5;
+
+        opacity: 0.72;
+
+        padding-left: 18px;
+
+        border-left: 3px solid rgba(255,255,255,0.35);
+
+        margin-bottom: 25px;
     }
 
-    .chips {
+    .label {
+        font-size: 11px;
+        text-transform: uppercase;
+
+        letter-spacing: 2px;
+
+        opacity: 0.45;
+
+        margin-bottom: 7px;
+    }
+
+    .words {
+        font-size: 15px;
+        line-height: 1.6;
+
+        opacity: 0.75;
+    }
+
+    .bottom {
+        margin-top: auto;
+
         display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-    }
+        justify-content: space-between;
+        align-items: center;
 
-    .chip {
-        background: #f0f0f2;
-        padding: 7px 11px;
-        border-radius: 10px;
-        font-size: 14px;
+        padding-top: 25px;
     }
 
     button {
-        width: 100%;
-        border: none;
-        border-radius: 15px;
-        padding: 14px;
-        margin-top: 25px;
-        font-size: 17px;
-        font-weight: 600;
-        background: #111;
+        border: 0;
+
         color: white;
+
+        background: rgba(255,255,255,0.12);
+
+        border: 1px solid rgba(255,255,255,0.15);
+
+        border-radius: 18px;
+
+        padding: 12px 18px;
+
+        font-size: 15px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: transform 0.15s ease,
+                    background 0.15s ease;
     }
 
     button:active {
-        transform: scale(.98);
+        transform: scale(0.94);
     }
 
-    #status {
-        text-align: center;
-        color: #777;
-        margin-top: 15px;
-        font-size: 13px;
+    .audio {
+        font-size: 22px;
+
+        width: 48px;
+        height: 48px;
+
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loading {
+        opacity: 0.5;
+        font-size: 18px;
+    }
+
+    .error {
+        color: #fca5a5;
+        line-height: 1.5;
+    }
+
+    .counter {
+        font-size: 12px;
+        opacity: 0.4;
+    }
+
+    @media (max-width: 600px) {
+
+        body {
+            padding: 12px;
+        }
+
+        .card {
+            padding: 25px;
+            min-height: 600px;
+            border-radius: 25px;
+        }
+
+        .word {
+            margin-top: 30px;
+        }
+
+        .definition {
+            font-size: 20px;
+        }
     }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
 
-    <div class="label">Vocabulary</div>
-
-    <h1 id="word">Loading...</h1>
-
-    <div id="phonetic"></div>
-
-    <div id="part" class="part" style="display:none"></div>
-
-    <div class="section">
-        <div class="section-title">Meaning</div>
-        <div id="definition" class="definition">
-            Getting a word...
+    <div class="header">
+        <div class="header-title">
+            DAILY VOCABULARY
         </div>
     </div>
 
-    <div class="section" id="exampleSection" style="display:none">
-        <div class="section-title">Example</div>
+    <div class="card">
+
+        <div id="category" class="category">
+            LOADING
+        </div>
+
+        <div id="word" class="word">
+            ...
+        </div>
+
+        <div id="phonetic" class="phonetic">
+            Loading pronunciation...
+        </div>
+
+        <div id="partOfSpeech" class="part-of-speech">
+        </div>
+
+        <div id="definition" class="definition">
+            <span class="loading">
+                Fetching definition...
+            </span>
+        </div>
+
         <div id="example" class="example"></div>
-    </div>
 
-    <div class="section" id="synonymSection" style="display:none">
-        <div class="section-title">Synonyms</div>
-        <div id="synonyms" class="chips"></div>
-    </div>
+        <div id="synonymsSection">
 
-    <button onclick="loadWord()">
-        New Word
-    </button>
+            <div class="label">
+                Synonyms
+            </div>
 
-    <div id="status">
-        Loading...
+            <div id="synonyms" class="words">
+            </div>
+
+        </div>
+
+        <div id="antonymsSection">
+
+            <div class="label">
+                Antonyms
+            </div>
+
+            <div id="antonyms" class="words">
+            </div>
+
+        </div>
+
+        <div class="bottom">
+
+            <div id="counter" class="counter">
+                Vocabulary
+            </div>
+
+            <div>
+
+                <button
+                    id="audioButton"
+                    class="audio"
+                    onclick="playAudio()"
+                    style="display:none;">
+                    🔊
+                </button>
+
+                <button onclick="nextWord()">
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
 
 <script>
 
-const RANDOM_WORD_API =
-    "https://random-word-api.herokuapp.com/word?number=1&diff=4";
-
-const DICTIONARY_API =
-    "https://api.dictionaryapi.dev/api/v2/entries/en/";
+/*
+==========================================================
+CONFIGURATION
+==========================================================
+*/
 
 const ROTATION_TIME = 30000;
 
-let currentWord = "";
-let audioURL = "";
+/*
+==========================================================
+VOCABULARY BANK
+==========================================================
+
+The definitions are NOT stored here.
+
+Only the words are stored.
+
+You can expand this list to thousands of words.
+*/
+
+const vocabulary = [
+
+    // Everyday / General
+
+    "abundant",
+    "accurate",
+    "adapt",
+    "adequate",
+    "ambiguous",
+    "anticipate",
+    "apparent",
+    "arbitrary",
+    "articulate",
+    "assert",
+    "assess",
+    "attain",
+    "authentic",
+    "coherent",
+    "coincide",
+    "comprehensive",
+    "conceive",
+    "concurrent",
+    "confine",
+    "consecutive",
+    "considerable",
+    "consistent",
+    "conventional",
+    "correspond",
+    "crucial",
+    "deduce",
+    "demonstrate",
+    "derive",
+    "diminish",
+    "distinct",
+    "diverse",
+    "elaborate",
+    "eliminate",
+    "empirical",
+    "enhance",
+    "equivalent",
+    "explicit",
+    "facilitate",
+    "feasible",
+    "fluctuate",
+    "fundamental",
+    "generate",
+    "hierarchy",
+    "implement",
+    "implicit",
+    "inevitable",
+    "infer",
+    "inherent",
+    "integrate",
+    "justify",
+    "maintain",
+    "mitigate",
+    "notable",
+    "obtain",
+    "optimal",
+    "precise",
+    "prevalent",
+    "profound",
+    "prominent",
+    "proportion",
+    "rational",
+    "refine",
+    "reinforce",
+    "reluctant",
+    "resilient",
+    "retain",
+    "substantial",
+    "sufficient",
+    "subsequent",
+    "transparent",
+    "underlying",
+    "validate",
+    "viable",
+
+    // Professional
+
+    "accountability",
+    "collaboration",
+    "competency",
+    "consensus",
+    "delegation",
+    "discrepancy",
+    "efficiency",
+    "escalation",
+    "evaluation",
+    "execution",
+    "governance",
+    "initiative",
+    "leadership",
+    "methodology",
+    "milestone",
+    "negotiation",
+    "ownership",
+    "prioritize",
+    "proactive",
+    "productivity",
+    "stakeholder",
+    "strategy",
+    "streamline",
+    "sustainability",
+    "transformation",
+
+    // DevOps / Cloud
+
+    "automation",
+    "availability",
+    "backlog",
+    "blueprint",
+    "deployment",
+    "disaster",
+    "elasticity",
+    "endpoint",
+    "failover",
+    "immutable",
+    "infrastructure",
+    "latency",
+    "loadbalancing",
+    "observability",
+    "orchestration",
+    "provision",
+    "redundancy",
+    "scalability",
+    "telemetry",
+    "throughput",
+    "tolerance",
+    "workload",
+
+    // Kubernetes / Architecture
+
+    "affinity",
+    "autoscaling",
+    "cluster",
+    "containerization",
+    "controller",
+    "dependency",
+    "ingress",
+    "namespace",
+    "node",
+    "pod",
+    "replica",
+    "scheduler",
+    "service",
+    "sidecar",
+    "topology",
+    "workload",
+
+    // Strong verbs
+
+    "accelerate",
+    "accommodate",
+    "accomplish",
+    "allocate",
+    "analyze",
+    "articulate",
+    "automate",
+    "consolidate",
+    "coordinate",
+    "decompose",
+    "diagnose",
+    "differentiate",
+    "distribute",
+    "evaluate",
+    "execute",
+    "expedite",
+    "formulate",
+    "identify",
+    "investigate",
+    "optimize",
+    "orchestrate",
+    "resolve",
+    "standardize",
+    "transform",
+    "troubleshoot",
+
+    // Advanced vocabulary
+
+    "ameliorate",
+    "anachronistic",
+    "conundrum",
+    "delineate",
+    "disparate",
+    "eloquent",
+    "ephemeral",
+    "exacerbate",
+    "exemplify",
+    "fastidious",
+    "gregarious",
+    "impetuous",
+    "indispensable",
+    "meticulous",
+    "nuanced",
+    "pervasive",
+    "pragmatic",
+    "proliferate",
+    "scrutinize",
+    "sporadic",
+    "ubiquitous",
+    "unprecedented",
+    "versatile",
+
+    // Interview vocabulary
+
+    "architecture",
+    "bottleneck",
+    "constraint",
+    "degradation",
+    "dependency",
+    "diagnosis",
+    "disruption",
+    "incident",
+    "optimization",
+    "resilience",
+    "recovery",
+    "rootcause",
+    "scaling",
+    "stability",
+    "tradeoff",
+    "zero-downtime"
+];
 
 
-/* ----------------------------------
-   RANDOM WORD
----------------------------------- */
+/*
+==========================================================
+STATE
+==========================================================
+*/
 
-async function getRandomWord() {
+let currentIndex =
+    parseInt(localStorage.getItem("vocabIndex") || "0");
 
-    const response = await fetch(
-        RANDOM_WORD_API,
-        {
-            method: "GET",
-            cache: "no-store"
-        }
-    );
+let currentAudio = null;
 
-    if (!response.ok) {
-        throw new Error(
-            "Random word API HTTP " + response.status
-        );
-    }
 
-    const data = await response.json();
+/*
+==========================================================
+ELEMENTS
+==========================================================
+*/
 
-    console.log("Random API:", data);
+const wordElement =
+    document.getElementById("word");
 
-    if (!Array.isArray(data) || !data[0]) {
-        throw new Error("Invalid random API response");
-    }
+const phoneticElement =
+    document.getElementById("phonetic");
 
-    return data[0];
+const definitionElement =
+    document.getElementById("definition");
+
+const exampleElement =
+    document.getElementById("example");
+
+const partOfSpeechElement =
+    document.getElementById("partOfSpeech");
+
+const synonymsElement =
+    document.getElementById("synonyms");
+
+const antonymsElement =
+    document.getElementById("antonyms");
+
+const synonymsSection =
+    document.getElementById("synonymsSection");
+
+const antonymsSection =
+    document.getElementById("antonymsSection");
+
+const categoryElement =
+    document.getElementById("category");
+
+const counterElement =
+    document.getElementById("counter");
+
+const audioButton =
+    document.getElementById("audioButton");
+
+
+/*
+==========================================================
+CATEGORY
+==========================================================
+*/
+
+function getCategory(word) {
+
+    const devops = [
+        "automation",
+        "availability",
+        "deployment",
+        "elasticity",
+        "endpoint",
+        "failover",
+        "immutable",
+        "infrastructure",
+        "latency",
+        "observability",
+        "orchestration",
+        "provision",
+        "redundancy",
+        "scalability",
+        "telemetry",
+        "throughput"
+    ];
+
+    const advanced = [
+        "ameliorate",
+        "anachronistic",
+        "conundrum",
+        "delineate",
+        "disparate",
+        "eloquent",
+        "ephemeral",
+        "exacerbate",
+        "fastidious",
+        "gregarious",
+        "impetuous",
+        "indispensable",
+        "meticulous",
+        "nuanced",
+        "pervasive",
+        "pragmatic",
+        "proliferate",
+        "scrutinize",
+        "ubiquitous",
+        "unprecedented"
+    ];
+
+    if (devops.includes(word))
+        return "DEVOPS";
+
+    if (advanced.includes(word))
+        return "ADVANCED";
+
+    return "PROFESSIONAL";
 }
 
 
-/* ----------------------------------
-   DICTIONARY
----------------------------------- */
+/*
+==========================================================
+FETCH DICTIONARY
+==========================================================
+*/
 
-async function getDefinition(word) {
+async function fetchDefinition(word) {
 
-    const url =
-        DICTIONARY_API +
-        encodeURIComponent(word);
+    const cacheKey = "dictionary_" + word;
 
-    const response = await fetch(
-        url,
-        {
-            method: "GET",
-            cache: "no-store"
+    /*
+    Check local cache first
+    */
+
+    const cached =
+        localStorage.getItem(cacheKey);
+
+    if (cached) {
+
+        try {
+
+            return JSON.parse(cached);
+
+        } catch (error) {
+
+            console.log("Invalid cache");
+
         }
-    );
 
-    if (!response.ok) {
-        throw new Error(
-            "Dictionary API HTTP " + response.status
-        );
     }
 
-    const data = await response.json();
 
-    console.log("Dictionary API:", data);
+    /*
+    Fetch from Free Dictionary API
+    */
+
+    const url =
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`;
+
+    const response =
+        await fetch(url);
+
+    if (!response.ok) {
+
+        throw new Error("Word not found");
+
+    }
+
+    const data =
+        await response.json();
+
+    /*
+    Save result locally
+    */
+
+    localStorage.setItem(
+        cacheKey,
+        JSON.stringify(data)
+    );
 
     return data;
 }
 
 
-/* ----------------------------------
-   DISPLAY
----------------------------------- */
+/*
+==========================================================
+DISPLAY WORD
+==========================================================
+*/
 
-function clearUI() {
+async function showWord() {
 
-    document.getElementById("word").textContent =
-        "Loading...";
+    if (currentIndex >= vocabulary.length)
+        currentIndex = 0;
 
-    document.getElementById("phonetic").textContent =
-        "";
+    const word =
+        vocabulary[currentIndex];
 
-    document.getElementById("definition").textContent =
-        "Finding meaning...";
+    localStorage.setItem(
+        "vocabIndex",
+        currentIndex
+    );
 
-    document.getElementById("example").textContent =
-        "";
+    /*
+    Reset UI
+    */
 
-    document.getElementById("synonyms").innerHTML =
-        "";
-
-    document.getElementById("part").style.display =
-        "none";
-
-    document.getElementById("exampleSection").style.display =
-        "none";
-
-    document.getElementById("synonymSection").style.display =
-        "none";
-
-    audioURL = "";
-}
-
-
-function displayWord(word, dictionaryData) {
-
-    document.getElementById("word").textContent =
+    wordElement.textContent =
         word;
 
-    if (!dictionaryData ||
-        !dictionaryData[0]) {
+    categoryElement.textContent =
+        getCategory(word);
 
-        document.getElementById("definition").textContent =
-            "Definition unavailable.";
+    phoneticElement.textContent =
+        "Loading pronunciation...";
 
-        return;
-    }
+    partOfSpeechElement.textContent =
+        "";
 
-    const entry = dictionaryData[0];
+    definitionElement.innerHTML =
+        `<span class="loading">
+            Fetching definition...
+        </span>`;
 
-    /* phonetic */
+    exampleElement.textContent =
+        "";
 
-    let phonetic =
-        entry.phonetic || "";
+    synonymsElement.textContent =
+        "";
 
-    if (!phonetic && entry.phonetics) {
+    antonymsElement.textContent =
+        "";
 
-        const phoneticObject =
-            entry.phonetics.find(
-                p => p.text
-            );
+    synonymsSection.style.display =
+        "none";
 
-        if (phoneticObject) {
-            phonetic =
-                phoneticObject.text;
-        }
-    }
+    antonymsSection.style.display =
+        "none";
 
-    document.getElementById("phonetic").textContent =
-        phonetic;
+    audioButton.style.display =
+        "none";
 
+    counterElement.textContent =
+        `${currentIndex + 1} / ${vocabulary.length}`;
 
-    /* audio */
-
-    if (entry.phonetics) {
-
-        const audioObject =
-            entry.phonetics.find(
-                p => p.audio
-            );
-
-        if (audioObject) {
-            audioURL =
-                audioObject.audio.startsWith("//")
-                    ? "https:" + audioObject.audio
-                    : audioObject.audio;
-        }
-    }
-
-
-    /* meaning */
-
-    const meanings =
-        entry.meanings || [];
-
-    if (!meanings.length) {
-
-        document.getElementById("definition").textContent =
-            "Definition unavailable.";
-
-        return;
-    }
-
-    const firstMeaning =
-        meanings[0];
-
-    const definition =
-        firstMeaning.definitions?.[0];
-
-    if (firstMeaning.partOfSpeech) {
-
-        const part =
-            document.getElementById("part");
-
-        part.textContent =
-            firstMeaning.partOfSpeech;
-
-        part.style.display =
-            "inline-block";
-    }
-
-    if (definition) {
-
-        document.getElementById("definition").textContent =
-            definition.definition;
-
-
-        /* example */
-
-        if (definition.example) {
-
-            document.getElementById("example").textContent =
-                definition.example;
-
-            document.getElementById("exampleSection")
-                .style.display = "block";
-        }
-
-
-        /* synonyms */
-
-        if (definition.synonyms &&
-            definition.synonyms.length) {
-
-            const container =
-                document.getElementById("synonyms");
-
-            container.innerHTML = "";
-
-            definition.synonyms
-                .slice(0, 8)
-                .forEach(word => {
-
-                    const chip =
-                        document.createElement("span");
-
-                    chip.className =
-                        "chip";
-
-                    chip.textContent =
-                        word;
-
-                    container.appendChild(chip);
-                });
-
-            document.getElementById("synonymSection")
-                .style.display = "block";
-        }
-    }
-}
-
-
-/* ----------------------------------
-   MAIN
----------------------------------- */
-
-async function loadWord() {
-
-    clearUI();
-
-    document.getElementById("status").textContent =
-        "Getting a new word...";
 
     try {
 
-        /* 1. Get random word */
+        const data =
+            await fetchDefinition(word);
 
-        const word =
-            await getRandomWord();
+        /*
+        First dictionary entry
+        */
 
-        currentWord =
-            word;
+        const entry =
+            data[0];
 
-        document.getElementById("word").textContent =
-            word;
+        /*
+        Pronunciation
+        */
+
+        let phonetic =
+            entry.phonetic || "";
+
+        if (!phonetic && entry.phonetics) {
+
+            const item =
+                entry.phonetics.find(
+                    p => p.text
+                );
+
+            if (item)
+                phonetic = item.text;
+        }
+
+        phoneticElement.textContent =
+            phonetic || "Pronunciation unavailable";
 
 
-        document.getElementById("status").textContent =
-            "Getting definition...";
+        /*
+        Audio
+        */
+
+        currentAudio = null;
+
+        if (entry.phonetics) {
+
+            const audioEntry =
+                entry.phonetics.find(
+                    p => p.audio
+                );
+
+            if (audioEntry) {
+
+                currentAudio =
+                    audioEntry.audio;
+
+                audioButton.style.display =
+                    "flex";
+            }
+        }
 
 
-        /* 2. Get dictionary data */
+        /*
+        Meaning
+        */
 
-        const dictionaryData =
-            await getDefinition(word);
+        const meaning =
+            entry.meanings?.[0];
+
+        if (meaning) {
+
+            partOfSpeechElement.textContent =
+                meaning.partOfSpeech || "";
+
+            const definition =
+                meaning.definitions?.[0];
+
+            if (definition) {
+
+                definitionElement.textContent =
+                    definition.definition || "";
+
+                if (definition.example) {
+
+                    exampleElement.textContent =
+                        `"${definition.example}"`;
+
+                }
+
+            }
+
+        }
 
 
-        /* 3. Display */
+        /*
+        Synonyms
+        */
 
-        displayWord(
-            word,
-            dictionaryData
-        );
+        let synonyms = [];
+
+        if (meaning?.synonyms) {
+
+            synonyms =
+                meaning.synonyms;
+
+        }
+
+        if (synonyms.length > 0) {
+
+            synonymsElement.textContent =
+                synonyms.slice(0, 8).join(" • ");
+
+            synonymsSection.style.display =
+                "block";
+        }
 
 
-        document.getElementById("status").textContent =
-            "Changes automatically every 30 seconds";
+        /*
+        Antonyms
+        */
+
+        let antonyms = [];
+
+        if (meaning?.antonyms) {
+
+            antonyms =
+                meaning.antonyms;
+
+        }
+
+        if (antonyms.length > 0) {
+
+            antonymsElement.textContent =
+                antonyms.slice(0, 8).join(" • ");
+
+            antonymsSection.style.display =
+                "block";
+        }
 
 
     } catch (error) {
 
-        console.error(
-            "Vocabulary error:",
-            error
-        );
+        console.log(error);
 
-        document.getElementById("word").textContent =
-            "Connection problem";
+        definitionElement.innerHTML = `
+            <div class="error">
+                Definition unavailable for this word.
+                <br><br>
+                Moving to another word...
+            </div>
+        `;
 
-        document.getElementById("definition").textContent =
-            "Unable to reach the vocabulary service.";
+        /*
+        Automatically skip unavailable words
+        */
 
-        document.getElementById("status").textContent =
-            "Tap New Word to try again";
+        setTimeout(() => {
+
+            nextWord();
+
+        }, 1500);
     }
 }
 
 
-/* ----------------------------------
-   AUDIO
----------------------------------- */
+/*
+==========================================================
+NEXT WORD
+==========================================================
+*/
+
+function nextWord() {
+
+    currentIndex++;
+
+    if (currentIndex >= vocabulary.length)
+        currentIndex = 0;
+
+    showWord();
+}
+
+
+/*
+==========================================================
+AUDIO
+==========================================================
+*/
 
 function playAudio() {
 
-    if (!audioURL) {
-
-        alert(
-            "Audio pronunciation unavailable."
-        );
-
+    if (!currentAudio)
         return;
-    }
 
     const audio =
-        new Audio(audioURL);
+        new Audio(currentAudio);
 
     audio.play();
+
 }
 
 
-/* ----------------------------------
-   AUTO ROTATION
----------------------------------- */
+/*
+==========================================================
+AUTOMATIC ROTATION
+==========================================================
+*/
 
-setInterval(
-    loadWord,
-    ROTATION_TIME
-);
+setInterval(() => {
+
+    nextWord();
+
+}, ROTATION_TIME);
 
 
-/* ----------------------------------
-   START
----------------------------------- */
+/*
+==========================================================
+START
+==========================================================
+*/
 
-loadWord();
+showWord();
 
 </script>
 
