@@ -2,35 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
-
-<meta name="apple-mobile-web-app-capable"
-      content="yes">
-
-<meta name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent">
-
-<meta name="apple-mobile-web-app-title"
-      content="Vocabulary">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vocabulary">
 
 <title>Daily Vocabulary</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
 
 body {
-
     margin: 0;
-
     min-height: 100vh;
-
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -47,164 +34,99 @@ body {
         );
 
     color: #0f172a;
-
     padding: 18px;
 }
 
 .app {
-
     width: 100%;
-
     max-width: 700px;
-
     margin: auto;
 }
-
 
 /* HEADER */
 
 .header {
-
     text-align: center;
-
-    padding:
-        8px
-        0
-        20px;
+    padding: 8px 0 20px;
 }
 
 .logo {
-
     font-size: 38px;
-
     margin-bottom: 4px;
 }
 
 .title {
-
     font-size: 30px;
-
     font-weight: 800;
-
     letter-spacing: -0.8px;
 }
 
 .subtitle {
-
     color: #64748b;
-
     font-size: 14px;
-
     margin-top: 5px;
 }
-
 
 /* MAIN CARD */
 
 .card {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
-    background:
-        rgba(255,255,255,0.92);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.9);
-
+    border: 1px solid rgba(255,255,255,0.9);
     border-radius: 30px;
-
     padding: 26px 22px;
 
     box-shadow:
         0 25px 60px
         rgba(15,23,42,0.12);
-
 }
-
 
 /* WORD */
 
 .word-area {
-
     text-align: center;
-
-    padding:
-        8px
-        0
-        24px;
+    padding: 8px 0 24px;
 }
 
 .word {
-
-    font-size:
-        clamp(42px, 11vw, 66px);
-
+    font-size: clamp(42px, 11vw, 66px);
     font-weight: 850;
-
     letter-spacing: -2.5px;
-
     line-height: 1.05;
-
     overflow-wrap: anywhere;
 }
 
 .phonetic {
-
     color: #64748b;
-
     font-size: 18px;
-
     margin-top: 10px;
 }
 
 .grammar {
-
     display: inline-block;
-
     margin-top: 11px;
-
-    padding:
-        6px
-        13px;
-
+    padding: 6px 13px;
     border-radius: 20px;
-
     background: #ede9fe;
-
     color: #6d28d9;
-
     font-size: 12px;
-
     font-weight: 800;
-
     text-transform: uppercase;
 }
-
 
 /* INFORMATION CARDS */
 
 .info-card {
-
     margin-top: 14px;
-
     padding: 18px;
-
     border-radius: 20px;
-
     background: #f8fafc;
-
-    border:
-        1px solid
-        #e2e8f0;
+    border: 1px solid #e2e8f0;
 }
 
 .info-card.definition-card {
-
     background:
         linear-gradient(
             135deg,
@@ -216,7 +138,6 @@ body {
 }
 
 .info-card.hindi-card {
-
     background:
         linear-gradient(
             135deg,
@@ -228,7 +149,6 @@ body {
 }
 
 .info-card.example-card {
-
     background:
         linear-gradient(
             135deg,
@@ -239,118 +159,77 @@ body {
     border-color: #bbf7d0;
 }
 
-
 .label {
-
     font-size: 11px;
-
     font-weight: 800;
-
     letter-spacing: 1px;
-
     text-transform: uppercase;
-
     color: #64748b;
-
     margin-bottom: 10px;
 }
-
 
 /* DEFINITION */
 
 .definition-list {
-
     margin: 0;
-
     padding-left: 22px;
 }
 
 .definition-item {
-
     padding-left: 5px;
-
     margin-bottom: 12px;
-
     font-size: 17px;
-
     line-height: 1.55;
 }
 
 .definition-item:last-child {
-
     margin-bottom: 0;
 }
-
 
 /* HINDI */
 
 .hindi {
-
     font-size: 23px;
-
     font-weight: 650;
-
     line-height: 1.55;
 }
-
 
 /* EXAMPLE */
 
 .example {
-
     font-size: 16px;
-
     line-height: 1.6;
-
     color: #475569;
-
     font-style: italic;
 }
-
 
 /* API STATUS */
 
 .api-status {
-
     margin-top: 8px;
-
     font-size: 12px;
-
     color: #94a3b8;
 }
-
 
 /* LOADING */
 
 .loading {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     color: #64748b;
-
     font-size: 14px;
 }
 
 .dot {
-
     width: 7px;
-
     height: 7px;
-
     border-radius: 50%;
-
     background: #6366f1;
-
-    animation:
-        pulse 1s infinite alternate;
+    animation: pulse 1s infinite alternate;
 }
 
 @keyframes pulse {
-
     from {
         opacity: .25;
     }
@@ -358,36 +237,23 @@ body {
     to {
         opacity: 1;
     }
-
 }
-
 
 /* ACTIONS */
 
 .actions {
-
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
-
     margin-top: 22px;
 }
 
 button {
-
     border: 0;
-
     border-radius: 16px;
-
     padding: 15px;
-
     font-size: 16px;
-
     font-weight: 700;
-
     cursor: pointer;
 
     transition:
@@ -396,62 +262,42 @@ button {
 }
 
 button:active {
-
-    transform:
-        scale(.96);
+    transform: scale(.96);
 }
 
 .primary {
-
     background: #0f172a;
-
     color: white;
 }
 
 .secondary {
-
     background: #e2e8f0;
-
     color: #0f172a;
 }
-
 
 /* SEARCH */
 
 .search {
-
     display: flex;
-
     gap: 9px;
-
     margin-top: 22px;
 }
 
 .search input {
-
     min-width: 0;
-
     flex: 1;
 
-    border:
-        1px solid
-        #cbd5e1;
-
+    border: 1px solid #cbd5e1;
     background: white;
-
     border-radius: 15px;
 
     padding: 14px;
-
     font-size: 16px;
-
     outline: none;
 }
 
 .search input:focus {
-
-    border-color:
-        #6366f1;
+    border-color: #6366f1;
 
     box-shadow:
         0 0 0 3px
@@ -459,107 +305,69 @@ button:active {
 }
 
 .search button {
-
     background: #4f46e5;
-
     color: white;
 }
-
 
 /* ALPHABET */
 
 .alphabet-title {
-
     margin-top: 24px;
-
     text-align: center;
-
     font-size: 11px;
-
     font-weight: 800;
-
     color: #64748b;
-
     text-transform: uppercase;
-
     letter-spacing: 1px;
 }
 
 .alphabet {
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
     gap: 6px;
-
     margin-top: 10px;
 }
 
 .letter {
-
     width: 35px;
-
     height: 35px;
-
     padding: 0;
 
     border-radius: 10px;
-
     background: #e2e8f0;
-
     color: #334155;
-
     font-size: 13px;
 }
 
 .letter.active {
-
     background: #4f46e5;
-
     color: white;
 }
-
 
 /* FOOTER */
 
 .status {
-
     text-align: center;
-
     margin-top: 17px;
-
     min-height: 20px;
-
     font-size: 13px;
-
     color: #64748b;
 }
 
 .count {
-
     text-align: center;
-
     margin-top: 5px;
-
     font-size: 12px;
-
     color: #94a3b8;
 }
 
 .timer {
-
     text-align: center;
-
     margin-top: 9px;
-
     font-size: 12px;
-
     color: #94a3b8;
 }
-
 
 /* MOBILE */
 
@@ -570,9 +378,7 @@ button:active {
     }
 
     .card {
-        padding:
-            22px
-            16px;
+        padding: 22px 16px;
     }
 
     .title {
@@ -586,9 +392,7 @@ button:active {
     .hindi {
         font-size: 21px;
     }
-
 }
-
 </style>
 </head>
 
@@ -596,7 +400,6 @@ button:active {
 <body>
 
 <div class="app">
-
 
     <!-- HEADER -->
 
@@ -617,10 +420,9 @@ button:active {
     </div>
 
 
-    <!-- CARD -->
+    <!-- MAIN CARD -->
 
     <div class="card">
-
 
         <!-- WORD -->
 
@@ -649,8 +451,7 @@ button:active {
 
         <!-- ENGLISH DEFINITION -->
 
-        <div
-            class="info-card definition-card">
+        <div class="info-card definition-card">
 
             <div class="label">
                 📘 English Definition
@@ -678,8 +479,7 @@ button:active {
 
         <!-- HINDI -->
 
-        <div
-            class="info-card hindi-card">
+        <div class="info-card hindi-card">
 
             <div class="label">
                 🇮🇳 Hindi Meaning
@@ -698,8 +498,7 @@ button:active {
 
         <!-- EXAMPLE -->
 
-        <div
-            class="info-card example-card">
+        <div class="info-card example-card">
 
             <div class="label">
                 💬 Example
@@ -764,9 +563,7 @@ button:active {
         <!-- A-Z -->
 
         <div class="alphabet-title">
-
             Browse A–Z
-
         </div>
 
         <div
@@ -795,7 +592,6 @@ button:active {
             id="timer">
         </div>
 
-
     </div>
 
 </div>
@@ -803,14 +599,18 @@ button:active {
 
 <script>
 
+// ==================================================
+// CONFIGURATION
+// ==================================================
 
 const WORDS_FILE =
     "./words.json";
 
-
 const DICTIONARY_API =
     "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
+const CACHE_PREFIX =
+    "vocab_";
 
 let words = [];
 
@@ -842,19 +642,17 @@ async function loadWords() {
                 Date.now()
             );
 
-
         if (!response.ok) {
 
             throw new Error(
-                "words.json error"
+                "words.json HTTP " +
+                response.status
             );
 
         }
 
-
         words =
             await response.json();
-
 
         if (!Array.isArray(words)) {
 
@@ -864,6 +662,16 @@ async function loadWords() {
 
         }
 
+        // words.json is ONLY the Hindi dictionary.
+        // English definition/example are NOT read locally.
+
+        words =
+            words.filter(
+                item =>
+                    item &&
+                    item.word &&
+                    typeof item.word === "string"
+            );
 
         document.getElementById(
             "count"
@@ -872,19 +680,20 @@ async function loadWords() {
             words.length.toLocaleString() +
             " words available";
 
-
         buildAlphabet();
 
-
-        setStatus("Ready");
-
+        setStatus(
+            "Ready"
+        );
 
         newWord();
 
-
     } catch(error) {
 
-        console.error(error);
+        console.error(
+            "Dictionary loading error:",
+            error
+        );
 
         setStatus(
             "Could not load vocabulary"
@@ -907,14 +716,13 @@ function newWord(
         return;
     }
 
-
     currentLetter =
         letter;
 
+    updateActiveLetter();
 
     let available =
         words;
-
 
     if (currentLetter) {
 
@@ -933,7 +741,6 @@ function newWord(
 
     }
 
-
     if (!available.length) {
 
         setStatus(
@@ -944,22 +751,18 @@ function newWord(
 
     }
 
-
     const index =
         Math.floor(
             Math.random() *
             available.length
         );
 
-
     currentWord =
         available[index];
-
 
     displayBasic(
         currentWord
     );
-
 
     getDictionaryData(
         currentWord.word
@@ -979,25 +782,22 @@ function displayBasic(item) {
     ).textContent =
         item.word || "—";
 
-
     document.getElementById(
         "hindi"
     ).textContent =
         item.hindi ||
         "Hindi meaning unavailable";
 
-
+    // Grammar comes from words.json.
     document.getElementById(
         "grammar"
     ).textContent =
         item.grammar || "";
 
-
     document.getElementById(
         "phonetic"
     ).textContent =
         "";
-
 
     document.getElementById(
         "definition"
@@ -1008,18 +808,15 @@ function displayBasic(item) {
             Finding definition...
         </div>`;
 
-
     document.getElementById(
         "example"
     ).textContent =
         "Finding example...";
 
-
     document.getElementById(
         "apiStatus"
     ).textContent =
         "";
-
 
     audioURL = "";
 
@@ -1027,21 +824,26 @@ function displayBasic(item) {
 
 
 // ==================================================
-// GET ENGLISH DEFINITION
+// GET ENGLISH DATA FROM API
 // ==================================================
 
 async function getDictionaryData(
     word
 ) {
 
+    const normalizedWord =
+        word
+            .trim()
+            .toLowerCase();
+
     const cacheKey =
-        "vocab_" +
-        word.toLowerCase();
+        CACHE_PREFIX +
+        normalizedWord;
 
 
-    // ----------------------------------------------
-    // CACHE
-    // ----------------------------------------------
+    // ==================================================
+    // CHECK CACHE
+    // ==================================================
 
     try {
 
@@ -1050,7 +852,6 @@ async function getDictionaryData(
                 cacheKey
             );
 
-
         if (cached) {
 
             const data =
@@ -1058,11 +859,10 @@ async function getDictionaryData(
                     cached
                 );
 
-
             if (
-                currentWord &&
-                currentWord.word.toLowerCase()
-                === word.toLowerCase()
+                isCurrentWord(
+                    normalizedWord
+                )
             ) {
 
                 displayDictionary(
@@ -1082,16 +882,16 @@ async function getDictionaryData(
     } catch(error) {
 
         console.log(
-            "Cache error",
+            "Cache read error:",
             error
         );
 
     }
 
 
-    // ----------------------------------------------
-    // API
-    // ----------------------------------------------
+    // ==================================================
+    // CALL ENGLISH DICTIONARY API
+    // ==================================================
 
     try {
 
@@ -1099,10 +899,9 @@ async function getDictionaryData(
             await fetch(
                 DICTIONARY_API +
                 encodeURIComponent(
-                    word
+                    normalizedWord
                 )
             );
-
 
         if (!response.ok) {
 
@@ -1113,22 +912,27 @@ async function getDictionaryData(
 
         }
 
-
         const data =
             await response.json();
 
 
-        // User may have changed word
+        // Make sure the user is still
+        // looking at this word.
+
         if (
-            !currentWord ||
-            currentWord.word.toLowerCase()
-            !== word.toLowerCase()
+            !isCurrentWord(
+                normalizedWord
+            )
         ) {
 
             return;
 
         }
 
+
+        // ==================================================
+        // CACHE API RESPONSE
+        // ==================================================
 
         try {
 
@@ -1140,7 +944,8 @@ async function getDictionaryData(
         } catch(error) {
 
             console.log(
-                "Cache save failed"
+                "Cache save failed:",
+                error
             );
 
         }
@@ -1150,7 +955,6 @@ async function getDictionaryData(
             data
         );
 
-
         setStatus(
             "Definition loaded"
         );
@@ -1159,14 +963,21 @@ async function getDictionaryData(
     } catch(error) {
 
         console.error(
-            "API error:",
+            "English API error:",
             error
         );
 
+        if (
+            isCurrentWord(
+                normalizedWord
+            )
+        ) {
 
-        showDefinitionFallback(
-            word
-        );
+            showDefinitionFallback(
+                normalizedWord
+            );
+
+        }
 
     }
 
@@ -1174,7 +985,27 @@ async function getDictionaryData(
 
 
 // ==================================================
-// DISPLAY DEFINITION
+// CHECK CURRENT WORD
+// ==================================================
+
+function isCurrentWord(
+    word
+) {
+
+    return (
+        currentWord &&
+        currentWord.word &&
+        currentWord.word
+            .trim()
+            .toLowerCase() ===
+        word
+    );
+
+}
+
+
+// ==================================================
+// DISPLAY API DATA
 // ==================================================
 
 function displayDictionary(
@@ -1195,92 +1026,102 @@ function displayDictionary(
     }
 
 
-    const entry =
-        data[0];
-
-
-    // ----------------------------------------------
-    // PHONETIC
-    // ----------------------------------------------
-
-    let phonetic = "";
-
-
-    if (entry.phonetic) {
-
-        phonetic =
-            entry.phonetic;
-
-    } else if (
-        entry.phonetics &&
-        entry.phonetics.length
-    ) {
-
-        const found =
-            entry.phonetics.find(
-                p => p.text
-            );
-
-
-        if (found) {
-
-            phonetic =
-                found.text;
-
-        }
-
-    }
-
-
-    document.getElementById(
-        "phonetic"
-    ).textContent =
-        phonetic;
-
-
-    // ----------------------------------------------
-    // AUDIO
-    // ----------------------------------------------
-
-    audioURL = "";
-
-
-    if (
-        entry.phonetics &&
-        entry.phonetics.length
-    ) {
-
-        const audio =
-            entry.phonetics.find(
-                p => p.audio
-            );
-
-
-        if (audio) {
-
-            audioURL =
-                audio.audio;
-
-        }
-
-    }
-
-
-    // ----------------------------------------------
-    // ALL DEFINITIONS
-    // ----------------------------------------------
-
     let definitions = [];
 
     let example = "";
 
-    let apiPartOfSpeech = "";
+    let phonetic = "";
+
+    let audio = "";
 
 
-    if (
-        entry.meanings &&
-        entry.meanings.length
+    // ==================================================
+    // PROCESS ALL API ENTRIES
+    // ==================================================
+
+    for (
+        const entry of data
     ) {
+
+
+        // ----------------------------------------------
+        // PHONETIC
+        // ----------------------------------------------
+
+        if (
+            !phonetic &&
+            entry.phonetic
+        ) {
+
+            phonetic =
+                entry.phonetic;
+
+        }
+
+
+        // ----------------------------------------------
+        // PHONETICS ARRAY
+        // ----------------------------------------------
+
+        if (
+            entry.phonetics &&
+            Array.isArray(
+                entry.phonetics
+            )
+        ) {
+
+            const phoneticItem =
+                entry.phonetics.find(
+                    item =>
+                        item &&
+                        item.text
+                );
+
+            if (
+                !phonetic &&
+                phoneticItem
+            ) {
+
+                phonetic =
+                    phoneticItem.text;
+
+            }
+
+
+            const audioItem =
+                entry.phonetics.find(
+                    item =>
+                        item &&
+                        item.audio
+                );
+
+            if (
+                !audio &&
+                audioItem
+            ) {
+
+                audio =
+                    audioItem.audio;
+
+            }
+
+        }
+
+
+        // ----------------------------------------------
+        // MEANINGS
+        // ----------------------------------------------
+
+        if (
+            !entry.meanings ||
+            !Array.isArray(
+                entry.meanings
+            )
+        ) {
+
+            continue;
+
+        }
 
 
         for (
@@ -1288,47 +1129,43 @@ function displayDictionary(
             of entry.meanings
         ) {
 
-
             if (
-                !apiPartOfSpeech &&
-                meaning.partOfSpeech
+                !meaning.definitions ||
+                !Array.isArray(
+                    meaning.definitions
+                )
             ) {
 
-                apiPartOfSpeech =
-                    meaning.partOfSpeech;
+                continue;
 
             }
 
 
-            if (
-                meaning.definitions
+            for (
+                const def
+                of meaning.definitions
             ) {
 
-                for (
-                    const def
-                    of meaning.definitions
+                if (
+                    def &&
+                    def.definition
                 ) {
 
-                    if (
+                    definitions.push(
                         def.definition
-                    ) {
+                    );
 
-                        definitions.push(
-                            def.definition
-                        );
-
-                    }
+                }
 
 
-                    if (
-                        !example &&
-                        def.example
-                    ) {
+                if (
+                    !example &&
+                    def &&
+                    def.example
+                ) {
 
-                        example =
-                            def.example;
-
-                    }
+                    example =
+                        def.example;
 
                 }
 
@@ -1339,9 +1176,48 @@ function displayDictionary(
     }
 
 
-    // ----------------------------------------------
+    // ==================================================
+    // REMOVE DUPLICATE DEFINITIONS
+    // ==================================================
+
+    definitions =
+        [...new Set(
+            definitions
+        )];
+
+
+    // ==================================================
+    // MAXIMUM 3 DEFINITIONS
+    // ==================================================
+
+    definitions =
+        definitions.slice(
+            0,
+            3
+        );
+
+
+    // ==================================================
+    // PHONETIC
+    // ==================================================
+
+    document.getElementById(
+        "phonetic"
+    ).textContent =
+        phonetic;
+
+
+    // ==================================================
+    // AUDIO
+    // ==================================================
+
+    audioURL =
+        audio;
+
+
+    // ==================================================
     // DEFINITION CARD
-    // ----------------------------------------------
+    // ==================================================
 
     const definitionElement =
         document.getElementById(
@@ -1350,14 +1226,6 @@ function displayDictionary(
 
 
     if (definitions.length) {
-
-        // Maximum 3 definitions
-        definitions =
-            definitions.slice(
-                0,
-                3
-            );
-
 
         definitionElement.innerHTML =
 
@@ -1381,6 +1249,7 @@ function displayDictionary(
         document.getElementById(
             "apiStatus"
         ).textContent =
+
             definitions.length +
             " definition" +
             (
@@ -1389,19 +1258,20 @@ function displayDictionary(
                     : ""
             );
 
-
     } else {
 
         showDefinitionFallback(
             currentWord.word
         );
 
+        return;
+
     }
 
 
-    // ----------------------------------------------
+    // ==================================================
     // EXAMPLE
-    // ----------------------------------------------
+    // ==================================================
 
     document.getElementById(
         "example"
@@ -1410,28 +1280,11 @@ function displayDictionary(
         example ||
         "No example sentence available.";
 
-
-    // ----------------------------------------------
-    // PART OF SPEECH
-    // ----------------------------------------------
-
-    if (
-        !currentWord.grammar &&
-        apiPartOfSpeech
-    ) {
-
-        document.getElementById(
-            "grammar"
-        ).textContent =
-            apiPartOfSpeech;
-
-    }
-
 }
 
 
 // ==================================================
-// FALLBACK
+// API FAILURE
 // ==================================================
 
 function showDefinitionFallback(
@@ -1442,23 +1295,20 @@ function showDefinitionFallback(
         "definition"
     ).innerHTML =
 
-        `<div class="definition">
+        `<div>
             English definition is not available
             for this entry.
         </div>`;
 
-
     document.getElementById(
         "apiStatus"
     ).textContent =
-        "Hindi meaning is available locally";
-
+        "English data unavailable";
 
     document.getElementById(
         "example"
     ).textContent =
         "No example available.";
-
 
     setStatus(
         "Hindi meaning available"
@@ -1490,8 +1340,11 @@ function searchWord() {
     const found =
         words.find(
             item =>
+
                 item.word &&
+
                 item.word
+                    .trim()
                     .toLowerCase() ===
                 input
         );
@@ -1524,6 +1377,10 @@ function searchWord() {
 }
 
 
+// ==================================================
+// SEARCH ENTER
+// ==================================================
+
 function handleSearchKey(
     event
 ) {
@@ -1550,23 +1407,23 @@ function buildAlphabet() {
             "alphabet"
         );
 
-
     container.innerHTML = "";
 
+
+    // ----------------------------------------------
+    // ALL
+    // ----------------------------------------------
 
     const all =
         document.createElement(
             "button"
         );
 
-
     all.className =
         "letter";
 
-
     all.textContent =
         "ALL";
-
 
     all.onclick = () => {
 
@@ -1579,11 +1436,14 @@ function buildAlphabet() {
 
     };
 
-
     container.appendChild(
         all
     );
 
+
+    // ----------------------------------------------
+    // A-Z
+    // ----------------------------------------------
 
     for (
         let i = 65;
@@ -1592,42 +1452,36 @@ function buildAlphabet() {
     ) {
 
         const letter =
-            String.fromCharCode(i);
-
+            String.fromCharCode(
+                i
+            );
 
         const button =
             document.createElement(
                 "button"
             );
 
-
         button.className =
             "letter";
-
 
         button.textContent =
             letter;
 
-
         button.dataset.letter =
             letter.toLowerCase();
-
 
         button.onclick = () => {
 
             currentLetter =
                 letter.toLowerCase();
 
-
             updateActiveLetter();
-
 
             newWord(
                 currentLetter
             );
 
         };
-
 
         container.appendChild(
             button
@@ -1637,6 +1491,10 @@ function buildAlphabet() {
 
 }
 
+
+// ==================================================
+// ACTIVE LETTER
+// ==================================================
 
 function updateActiveLetter() {
 
@@ -1651,11 +1509,10 @@ function updateActiveLetter() {
                     "active"
                 );
 
-
                 if (
                     currentLetter &&
-                    button.dataset.letter
-                    === currentLetter
+                    button.dataset.letter ===
+                    currentLetter
                 ) {
 
                     button.classList.add(
@@ -1681,6 +1538,8 @@ function pronounce() {
     }
 
 
+    // API AUDIO
+
     if (audioURL) {
 
         const audio =
@@ -1688,27 +1547,34 @@ function pronounce() {
                 audioURL
             );
 
-
         audio.play()
             .catch(
                 () => speakWord()
             );
-
 
         return;
 
     }
 
 
+    // Browser speech fallback
+
     speakWord();
 
 }
 
 
+// ==================================================
+// BROWSER SPEECH
+// ==================================================
+
 function speakWord() {
 
     if (
-        !("speechSynthesis" in window)
+        !(
+            "speechSynthesis"
+            in window
+        )
     ) {
 
         setStatus(
@@ -1731,7 +1597,6 @@ function speakWord() {
 
     speech.lang =
         "en-US";
-
 
     speech.rate =
         0.8;
@@ -1757,10 +1622,8 @@ function escapeHTML(
             "div"
         );
 
-
     div.textContent =
         text;
-
 
     return div.innerHTML;
 
@@ -1799,7 +1662,6 @@ setInterval(
 
             secondsRemaining =
                 30;
-
 
             newWord(
                 currentLetter
