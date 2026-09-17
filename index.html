@@ -2,23 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <meta name="theme-color" content="#0f172a">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Vocabulary">
+
+<meta name="apple-mobile-web-app-capable"
+      content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent">
+
+<meta name="apple-mobile-web-app-title"
+      content="Vocabulary">
 
 <title>Daily Vocabulary</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
 
 body {
+
     margin: 0;
+
     min-height: 100vh;
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -27,224 +39,404 @@ body {
         sans-serif;
 
     background:
-        radial-gradient(circle at top, #dbeafe 0, #f8fafc 42%, #eef2ff 100%);
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f8fafc 45%,
+            #e0f2fe
+        );
 
     color: #0f172a;
+
     padding: 18px;
 }
 
 .app {
+
     width: 100%;
-    max-width: 680px;
+
+    max-width: 700px;
+
     margin: auto;
 }
+
 
 /* HEADER */
 
 .header {
+
     text-align: center;
-    padding: 12px 0 20px;
+
+    padding:
+        8px
+        0
+        20px;
 }
 
 .logo {
+
     font-size: 38px;
-    margin-bottom: 5px;
+
+    margin-bottom: 4px;
 }
 
 .title {
+
     font-size: 30px;
+
     font-weight: 800;
+
     letter-spacing: -0.8px;
 }
 
 .subtitle {
+
     color: #64748b;
+
     font-size: 14px;
+
     margin-top: 5px;
 }
+
 
 /* MAIN CARD */
 
 .card {
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
 
-    border: 1px solid rgba(255,255,255,0.8);
+    background:
+        rgba(255,255,255,0.92);
 
-    border-radius: 28px;
+    backdrop-filter:
+        blur(20px);
 
-    padding: 28px 24px;
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.9);
+
+    border-radius: 30px;
+
+    padding: 26px 22px;
 
     box-shadow:
-        0 20px 50px rgba(15,23,42,0.10),
-        0 3px 10px rgba(15,23,42,0.05);
+        0 25px 60px
+        rgba(15,23,42,0.12);
 
-    transition: transform 0.2s ease;
 }
 
-.card.changing {
-    transform: scale(0.99);
-}
 
 /* WORD */
 
 .word-area {
+
     text-align: center;
-    padding: 8px 0 25px;
+
+    padding:
+        8px
+        0
+        24px;
 }
 
 .word {
-    font-size: clamp(40px, 10vw, 64px);
+
+    font-size:
+        clamp(42px, 11vw, 66px);
+
     font-weight: 850;
-    letter-spacing: -2px;
+
+    letter-spacing: -2.5px;
+
     line-height: 1.05;
+
     overflow-wrap: anywhere;
 }
 
 .phonetic {
+
     color: #64748b;
-    font-size: 19px;
+
+    font-size: 18px;
+
     margin-top: 10px;
 }
 
 .grammar {
+
     display: inline-block;
 
-    margin-top: 12px;
+    margin-top: 11px;
 
-    padding: 5px 12px;
+    padding:
+        6px
+        13px;
 
     border-radius: 20px;
 
     background: #ede9fe;
+
     color: #6d28d9;
 
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 12px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
 }
 
-/* SECTIONS */
 
-.section {
-    margin-top: 18px;
-}
+/* INFORMATION CARDS */
 
-.section-card {
-    background: #f8fafc;
-    border-radius: 18px;
+.info-card {
+
+    margin-top: 14px;
+
     padding: 18px;
+
+    border-radius: 20px;
+
+    background: #f8fafc;
+
+    border:
+        1px solid
+        #e2e8f0;
 }
+
+.info-card.definition-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #eef2ff
+        );
+
+    border-color: #e0e7ff;
+}
+
+.info-card.hindi-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7ed,
+            #fffbeb
+        );
+
+    border-color: #fed7aa;
+}
+
+.info-card.example-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4,
+            #f8fafc
+        );
+
+    border-color: #bbf7d0;
+}
+
 
 .label {
+
     font-size: 11px;
+
     font-weight: 800;
-    text-transform: uppercase;
+
     letter-spacing: 1px;
+
+    text-transform: uppercase;
+
     color: #64748b;
-    margin-bottom: 8px;
+
+    margin-bottom: 10px;
 }
 
-.definition {
-    font-size: 18px;
-    line-height: 1.55;
-    font-weight: 500;
+
+/* DEFINITION */
+
+.definition-list {
+
+    margin: 0;
+
+    padding-left: 22px;
 }
+
+.definition-item {
+
+    padding-left: 5px;
+
+    margin-bottom: 12px;
+
+    font-size: 17px;
+
+    line-height: 1.55;
+}
+
+.definition-item:last-child {
+
+    margin-bottom: 0;
+}
+
+
+/* HINDI */
 
 .hindi {
+
     font-size: 23px;
-    line-height: 1.5;
-    font-weight: 600;
+
+    font-weight: 650;
+
+    line-height: 1.55;
 }
 
+
+/* EXAMPLE */
+
 .example {
-    color: #475569;
+
     font-size: 16px;
-    line-height: 1.55;
+
+    line-height: 1.6;
+
+    color: #475569;
+
     font-style: italic;
 }
 
+
+/* API STATUS */
+
+.api-status {
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color: #94a3b8;
+}
+
+
 /* LOADING */
 
-.loading-line {
-    height: 18px;
-    width: 75%;
+.loading {
 
-    border-radius: 10px;
+    display: flex;
 
-    background: linear-gradient(
-        90deg,
-        #e2e8f0,
-        #f8fafc,
-        #e2e8f0
-    );
+    align-items: center;
 
-    background-size: 200% 100%;
+    gap: 8px;
 
-    animation: shimmer 1.4s infinite;
+    color: #64748b;
+
+    font-size: 14px;
 }
 
-@keyframes shimmer {
-    0% {
-        background-position: 200% 0;
-    }
+.dot {
 
-    100% {
-        background-position: -200% 0;
-    }
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #6366f1;
+
+    animation:
+        pulse 1s infinite alternate;
 }
 
-/* BUTTONS */
+@keyframes pulse {
+
+    from {
+        opacity: .25;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* ACTIONS */
 
 .actions {
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap: 10px;
+
     margin-top: 22px;
 }
 
 button {
+
     border: 0;
+
     border-radius: 16px;
+
     padding: 15px;
 
     font-size: 16px;
+
     font-weight: 700;
 
     cursor: pointer;
 
     transition:
-        transform 0.12s ease,
-        opacity 0.12s ease;
+        transform .12s ease,
+        opacity .12s ease;
 }
 
 button:active {
-    transform: scale(0.96);
+
+    transform:
+        scale(.96);
 }
 
 .primary {
+
     background: #0f172a;
+
     color: white;
 }
 
 .secondary {
+
     background: #e2e8f0;
+
     color: #0f172a;
 }
+
 
 /* SEARCH */
 
 .search {
+
     display: flex;
+
     gap: 9px;
+
     margin-top: 22px;
 }
 
 .search input {
+
     min-width: 0;
+
     flex: 1;
 
-    border: 1px solid #cbd5e1;
+    border:
+        1px solid
+        #cbd5e1;
+
     background: white;
 
     border-radius: 15px;
@@ -257,42 +449,59 @@ button:active {
 }
 
 .search input:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+
+    border-color:
+        #6366f1;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99,102,241,.12);
 }
 
 .search button {
+
     background: #4f46e5;
+
     color: white;
-    flex: 0 0 auto;
 }
+
 
 /* ALPHABET */
 
 .alphabet-title {
+
     margin-top: 24px;
+
     text-align: center;
 
-    font-size: 12px;
+    font-size: 11px;
+
     font-weight: 800;
 
     color: #64748b;
 
     text-transform: uppercase;
+
     letter-spacing: 1px;
 }
 
 .alphabet {
+
     display: flex;
+
     flex-wrap: wrap;
+
     justify-content: center;
+
     gap: 6px;
 
     margin-top: 10px;
 }
 
 .letter {
+
     width: 35px;
+
     height: 35px;
 
     padding: 0;
@@ -300,60 +509,70 @@ button:active {
     border-radius: 10px;
 
     background: #e2e8f0;
+
     color: #334155;
 
     font-size: 13px;
 }
 
 .letter.active {
+
     background: #4f46e5;
+
     color: white;
 }
 
-/* STATUS */
+
+/* FOOTER */
 
 .status {
+
     text-align: center;
 
-    margin-top: 18px;
-
-    font-size: 13px;
-    color: #64748b;
+    margin-top: 17px;
 
     min-height: 20px;
+
+    font-size: 13px;
+
+    color: #64748b;
 }
 
 .count {
+
     text-align: center;
 
     margin-top: 5px;
 
     font-size: 12px;
+
     color: #94a3b8;
 }
-
-/* TIMER */
 
 .timer {
+
     text-align: center;
 
-    margin-top: 13px;
+    margin-top: 9px;
 
     font-size: 12px;
+
     color: #94a3b8;
 }
+
 
 /* MOBILE */
 
-@media (max-width: 500px) {
+@media(max-width:500px) {
 
     body {
-        padding: 12px;
+        padding: 10px;
     }
 
     .card {
-        padding: 22px 17px;
-        border-radius: 24px;
+        padding:
+            22px
+            16px;
     }
 
     .title {
@@ -361,77 +580,97 @@ button:active {
     }
 
     .word {
-        font-size: 42px;
-    }
-
-    .definition {
-        font-size: 17px;
+        font-size: 43px;
     }
 
     .hindi {
         font-size: 21px;
     }
 
-    .letter {
-        width: 32px;
-        height: 32px;
-    }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
+
+    <!-- HEADER -->
+
     <div class="header">
 
-        <div class="logo">📖</div>
+        <div class="logo">
+            📖
+        </div>
 
         <div class="title">
             Daily Vocabulary
         </div>
 
         <div class="subtitle">
-            Build your English • English → Hindi
+            Learn one word at a time
         </div>
 
     </div>
 
 
-    <div class="card" id="card">
+    <!-- CARD -->
+
+    <div class="card">
+
 
         <!-- WORD -->
 
         <div class="word-area">
 
-            <div class="word" id="word">
+            <div
+                class="word"
+                id="word">
+
                 Loading...
+
             </div>
 
-            <div class="phonetic" id="phonetic"></div>
+            <div
+                class="phonetic"
+                id="phonetic">
+            </div>
 
-            <div class="grammar" id="grammar"></div>
+            <div
+                class="grammar"
+                id="grammar">
+            </div>
 
         </div>
 
 
-        <!-- ENGLISH -->
+        <!-- ENGLISH DEFINITION -->
 
-        <div class="section">
+        <div
+            class="info-card definition-card">
 
-            <div class="section-card">
+            <div class="label">
+                📘 English Definition
+            </div>
 
-                <div class="label">
-                    English Definition
+            <div id="definition">
+
+                <div class="loading">
+
+                    <span class="dot"></span>
+
+                    Finding definition...
+
                 </div>
 
-                <div class="definition" id="definition">
+            </div>
 
-                    <div class="loading-line"></div>
-
-                </div>
-
+            <div
+                class="api-status"
+                id="apiStatus">
             </div>
 
         </div>
@@ -439,17 +678,18 @@ button:active {
 
         <!-- HINDI -->
 
-        <div class="section">
+        <div
+            class="info-card hindi-card">
 
-            <div class="section-card">
+            <div class="label">
+                🇮🇳 Hindi Meaning
+            </div>
 
-                <div class="label">
-                    🇮🇳 Hindi Meaning
-                </div>
+            <div
+                class="hindi"
+                id="hindi">
 
-                <div class="hindi" id="hindi">
-                    Loading...
-                </div>
+                Loading...
 
             </div>
 
@@ -458,17 +698,18 @@ button:active {
 
         <!-- EXAMPLE -->
 
-        <div class="section">
+        <div
+            class="info-card example-card">
 
-            <div class="section-card">
+            <div class="label">
+                💬 Example
+            </div>
 
-                <div class="label">
-                    💬 Example
-                </div>
+            <div
+                class="example"
+                id="example">
 
-                <div class="example" id="example">
-                    —
-                </div>
+                —
 
             </div>
 
@@ -510,17 +751,22 @@ button:active {
                 onkeydown="handleSearchKey(event)"
             >
 
-            <button onclick="searchWord()">
+            <button
+                onclick="searchWord()">
+
                 Search
+
             </button>
 
         </div>
 
 
-        <!-- ALPHABET -->
+        <!-- A-Z -->
 
         <div class="alphabet-title">
+
             Browse A–Z
+
         </div>
 
         <div
@@ -549,6 +795,7 @@ button:active {
             id="timer">
         </div>
 
+
     </div>
 
 </div>
@@ -556,10 +803,14 @@ button:active {
 
 <script>
 
-const WORDS_FILE = "./words.json";
+
+const WORDS_FILE =
+    "./words.json";
+
 
 const DICTIONARY_API =
     "https://api.dictionaryapi.dev/api/v2/entries/en/";
+
 
 let words = [];
 
@@ -572,88 +823,116 @@ let audioURL = "";
 let secondsRemaining = 30;
 
 
-// --------------------------------------------------
-// LOAD LOCAL DICTIONARY
-// --------------------------------------------------
+// ==================================================
+// LOAD WORDS
+// ==================================================
 
 async function loadWords() {
 
-    setStatus("Loading vocabulary...");
+    setStatus(
+        "Loading vocabulary..."
+    );
 
     try {
 
         const response =
             await fetch(
-                WORDS_FILE + "?v=" + Date.now()
+                WORDS_FILE +
+                "?v=" +
+                Date.now()
             );
+
 
         if (!response.ok) {
 
             throw new Error(
-                "Could not load words.json"
+                "words.json error"
             );
 
         }
+
 
         words =
             await response.json();
 
+
         if (!Array.isArray(words)) {
 
             throw new Error(
-                "words.json must contain an array"
+                "Invalid words.json"
             );
 
         }
 
-        document.getElementById("count")
-            .textContent =
-                words.length.toLocaleString() +
-                " words available";
+
+        document.getElementById(
+            "count"
+        ).textContent =
+
+            words.length.toLocaleString() +
+            " words available";
+
 
         buildAlphabet();
 
+
         setStatus("Ready");
+
 
         newWord();
 
-    } catch (error) {
+
+    } catch(error) {
 
         console.error(error);
 
         setStatus(
-            "Unable to load vocabulary"
+            "Could not load vocabulary"
         );
 
     }
+
 }
 
 
-// --------------------------------------------------
+// ==================================================
 // NEW WORD
-// --------------------------------------------------
+// ==================================================
 
-function newWord(letter = currentLetter) {
+function newWord(
+    letter = currentLetter
+) {
 
     if (!words.length) {
         return;
     }
 
-    currentLetter = letter;
 
-    let available = words;
+    currentLetter =
+        letter;
+
+
+    let available =
+        words;
+
 
     if (currentLetter) {
 
         available =
-            words.filter(item =>
-                item.word &&
-                item.word
-                    .toLowerCase()
-                    .startsWith(currentLetter)
+            words.filter(
+                item =>
+
+                    item.word &&
+
+                    item.word
+                        .toLowerCase()
+                        .startsWith(
+                            currentLetter
+                        )
             );
 
     }
+
 
     if (!available.length) {
 
@@ -662,153 +941,194 @@ function newWord(letter = currentLetter) {
         );
 
         return;
+
     }
+
 
     const index =
         Math.floor(
-            Math.random() * available.length
+            Math.random() *
+            available.length
         );
+
 
     currentWord =
         available[index];
 
-    displayBasic(currentWord);
+
+    displayBasic(
+        currentWord
+    );
+
 
     getDictionaryData(
         currentWord.word
     );
+
 }
 
 
-// --------------------------------------------------
-// DISPLAY WORD IMMEDIATELY
-// --------------------------------------------------
+// ==================================================
+// DISPLAY LOCAL DATA
+// ==================================================
 
 function displayBasic(item) {
 
-    const card =
-        document.getElementById("card");
+    document.getElementById(
+        "word"
+    ).textContent =
+        item.word || "—";
 
-    card.classList.add("changing");
 
-    setTimeout(() => {
-        card.classList.remove("changing");
-    }, 180);
+    document.getElementById(
+        "hindi"
+    ).textContent =
+        item.hindi ||
+        "Hindi meaning unavailable";
 
-    document.getElementById("word")
-        .textContent =
-            item.word || "—";
 
-    document.getElementById("hindi")
-        .textContent =
-            item.hindi ||
-            "Hindi meaning unavailable";
+    document.getElementById(
+        "grammar"
+    ).textContent =
+        item.grammar || "";
 
-    document.getElementById("grammar")
-        .textContent =
-            item.grammar || "";
 
-    document.getElementById("phonetic")
-        .textContent = "";
+    document.getElementById(
+        "phonetic"
+    ).textContent =
+        "";
 
-    document.getElementById("definition")
-        .innerHTML =
-            '<div class="loading-line"></div>';
 
-    document.getElementById("example")
-        .textContent =
-            "Finding an example...";
+    document.getElementById(
+        "definition"
+    ).innerHTML =
+
+        `<div class="loading">
+            <span class="dot"></span>
+            Finding definition...
+        </div>`;
+
+
+    document.getElementById(
+        "example"
+    ).textContent =
+        "Finding example...";
+
+
+    document.getElementById(
+        "apiStatus"
+    ).textContent =
+        "";
+
 
     audioURL = "";
 
-    setStatus(
-        "Loading English definition..."
-    );
 }
 
 
-// --------------------------------------------------
-// DICTIONARY API
-// --------------------------------------------------
+// ==================================================
+// GET ENGLISH DEFINITION
+// ==================================================
 
-async function getDictionaryData(word) {
+async function getDictionaryData(
+    word
+) {
 
     const cacheKey =
-        "vocab_definition_" +
+        "vocab_" +
         word.toLowerCase();
 
 
-    // -----------------------------
-    // CHECK CACHE
-    // -----------------------------
+    // ----------------------------------------------
+    // CACHE
+    // ----------------------------------------------
 
     try {
 
         const cached =
-            localStorage.getItem(cacheKey);
+            localStorage.getItem(
+                cacheKey
+            );
+
 
         if (cached) {
 
             const data =
-                JSON.parse(cached);
+                JSON.parse(
+                    cached
+                );
 
-            displayDictionary(data);
 
-            setStatus(
-                "⚡ Instant — cached definition"
-            );
+            if (
+                currentWord &&
+                currentWord.word.toLowerCase()
+                === word.toLowerCase()
+            ) {
+
+                displayDictionary(
+                    data
+                );
+
+                setStatus(
+                    "⚡ Definition from cache"
+                );
+
+            }
 
             return;
+
         }
 
-    } catch (error) {
+    } catch(error) {
 
         console.log(
-            "Cache unavailable"
+            "Cache error",
+            error
         );
 
     }
 
 
-    // -----------------------------
-    // API REQUEST
-    // -----------------------------
+    // ----------------------------------------------
+    // API
+    // ----------------------------------------------
 
     try {
 
         const response =
             await fetch(
                 DICTIONARY_API +
-                encodeURIComponent(word)
+                encodeURIComponent(
+                    word
+                )
             );
+
 
         if (!response.ok) {
 
             throw new Error(
-                "HTTP " + response.status
+                "HTTP " +
+                response.status
             );
 
         }
+
 
         const data =
             await response.json();
 
 
-        // Don't update screen if
-        // user already moved to another word
-
+        // User may have changed word
         if (
             !currentWord ||
-            currentWord.word.toLowerCase() !==
-            word.toLowerCase()
+            currentWord.word.toLowerCase()
+            !== word.toLowerCase()
         ) {
 
             return;
 
         }
 
-
-        // Save to cache
 
         try {
 
@@ -817,71 +1137,74 @@ async function getDictionaryData(word) {
                 JSON.stringify(data)
             );
 
-        } catch (error) {
+        } catch(error) {
 
             console.log(
-                "Could not save cache"
+                "Cache save failed"
             );
 
         }
 
 
-        displayDictionary(data);
+        displayDictionary(
+            data
+        );
+
 
         setStatus(
             "Definition loaded"
         );
 
-    } catch (error) {
+
+    } catch(error) {
 
         console.error(
-            "Definition error:",
+            "API error:",
             error
         );
 
-        document.getElementById("definition")
-            .textContent =
-                "English definition unavailable.";
 
-        document.getElementById("example")
-            .textContent =
-                "Try another word.";
-
-        setStatus(
-            "Hindi meaning available • English definition unavailable"
+        showDefinitionFallback(
+            word
         );
+
     }
+
 }
 
 
-// --------------------------------------------------
-// DISPLAY API RESULT
-// --------------------------------------------------
+// ==================================================
+// DISPLAY DEFINITION
+// ==================================================
 
-function displayDictionary(data) {
+function displayDictionary(
+    data
+) {
 
     if (
         !Array.isArray(data) ||
         !data.length
     ) {
 
-        document.getElementById("definition")
-            .textContent =
-                "No definition found.";
+        showDefinitionFallback(
+            currentWord.word
+        );
 
         return;
 
     }
 
+
     const entry =
         data[0];
 
 
-    // -----------------------------
+    // ----------------------------------------------
     // PHONETIC
-    // -----------------------------
+    // ----------------------------------------------
 
     let phonetic = "";
+
 
     if (entry.phonetic) {
 
@@ -895,25 +1218,32 @@ function displayDictionary(data) {
 
         const found =
             entry.phonetics.find(
-                item => item.text
+                p => p.text
             );
 
+
         if (found) {
-            phonetic = found.text;
+
+            phonetic =
+                found.text;
+
         }
 
     }
 
-    document.getElementById("phonetic")
-        .textContent =
-            phonetic;
+
+    document.getElementById(
+        "phonetic"
+    ).textContent =
+        phonetic;
 
 
-    // -----------------------------
+    // ----------------------------------------------
     // AUDIO
-    // -----------------------------
+    // ----------------------------------------------
 
     audioURL = "";
+
 
     if (
         entry.phonetics &&
@@ -922,25 +1252,29 @@ function displayDictionary(data) {
 
         const audio =
             entry.phonetics.find(
-                item => item.audio
+                p => p.audio
             );
 
+
         if (audio) {
-            audioURL = audio.audio;
+
+            audioURL =
+                audio.audio;
+
         }
 
     }
 
 
-    // -----------------------------
-    // MEANING
-    // -----------------------------
+    // ----------------------------------------------
+    // ALL DEFINITIONS
+    // ----------------------------------------------
 
-    let definition = "";
+    let definitions = [];
 
     let example = "";
 
-    let partOfSpeech = "";
+    let apiPartOfSpeech = "";
 
 
     if (
@@ -948,60 +1282,194 @@ function displayDictionary(data) {
         entry.meanings.length
     ) {
 
-        const meaning =
-            entry.meanings[0];
 
-        partOfSpeech =
-            meaning.partOfSpeech || "";
-
-
-        if (
-            meaning.definitions &&
-            meaning.definitions.length
+        for (
+            const meaning
+            of entry.meanings
         ) {
 
-            const def =
-                meaning.definitions[0];
 
-            definition =
-                def.definition || "";
+            if (
+                !apiPartOfSpeech &&
+                meaning.partOfSpeech
+            ) {
 
-            example =
-                def.example || "";
+                apiPartOfSpeech =
+                    meaning.partOfSpeech;
+
+            }
+
+
+            if (
+                meaning.definitions
+            ) {
+
+                for (
+                    const def
+                    of meaning.definitions
+                ) {
+
+                    if (
+                        def.definition
+                    ) {
+
+                        definitions.push(
+                            def.definition
+                        );
+
+                    }
+
+
+                    if (
+                        !example &&
+                        def.example
+                    ) {
+
+                        example =
+                            def.example;
+
+                    }
+
+                }
+
+            }
 
         }
 
     }
 
 
-    document.getElementById("definition")
-        .textContent =
-            definition ||
-            "No English definition found.";
+    // ----------------------------------------------
+    // DEFINITION CARD
+    // ----------------------------------------------
+
+    const definitionElement =
+        document.getElementById(
+            "definition"
+        );
 
 
-    document.getElementById("example")
-        .textContent =
-            example ||
-            "No example sentence available.";
+    if (definitions.length) {
 
+        // Maximum 3 definitions
+        definitions =
+            definitions.slice(
+                0,
+                3
+            );
+
+
+        definitionElement.innerHTML =
+
+            `<ol class="definition-list">
+
+                ${
+                    definitions.map(
+                        definition =>
+
+                        `<li class="definition-item">
+                            ${escapeHTML(
+                                definition
+                            )}
+                        </li>`
+                    ).join("")
+                }
+
+            </ol>`;
+
+
+        document.getElementById(
+            "apiStatus"
+        ).textContent =
+            definitions.length +
+            " definition" +
+            (
+                definitions.length > 1
+                    ? "s"
+                    : ""
+            );
+
+
+    } else {
+
+        showDefinitionFallback(
+            currentWord.word
+        );
+
+    }
+
+
+    // ----------------------------------------------
+    // EXAMPLE
+    // ----------------------------------------------
+
+    document.getElementById(
+        "example"
+    ).textContent =
+
+        example ||
+        "No example sentence available.";
+
+
+    // ----------------------------------------------
+    // PART OF SPEECH
+    // ----------------------------------------------
 
     if (
         !currentWord.grammar &&
-        partOfSpeech
+        apiPartOfSpeech
     ) {
 
-        document.getElementById("grammar")
-            .textContent =
-                partOfSpeech;
+        document.getElementById(
+            "grammar"
+        ).textContent =
+            apiPartOfSpeech;
 
     }
+
 }
 
 
-// --------------------------------------------------
+// ==================================================
+// FALLBACK
+// ==================================================
+
+function showDefinitionFallback(
+    word
+) {
+
+    document.getElementById(
+        "definition"
+    ).innerHTML =
+
+        `<div class="definition">
+            English definition is not available
+            for this entry.
+        </div>`;
+
+
+    document.getElementById(
+        "apiStatus"
+    ).textContent =
+        "Hindi meaning is available locally";
+
+
+    document.getElementById(
+        "example"
+    ).textContent =
+        "No example available.";
+
+
+    setStatus(
+        "Hindi meaning available"
+    );
+
+}
+
+
+// ==================================================
 // SEARCH
-// --------------------------------------------------
+// ==================================================
 
 function searchWord() {
 
@@ -1013,49 +1481,67 @@ function searchWord() {
         .trim()
         .toLowerCase();
 
+
     if (!input) {
         return;
     }
 
 
     const found =
-        words.find(item =>
-            item.word &&
-            item.word.toLowerCase() === input
+        words.find(
+            item =>
+                item.word &&
+                item.word
+                    .toLowerCase() ===
+                input
         );
 
 
     if (!found) {
 
         setStatus(
-            "Word not found in dictionary"
+            "Word not found"
         );
 
         return;
+
     }
 
 
-    currentWord = found;
+    currentWord =
+        found;
 
-    displayBasic(found);
+
+    displayBasic(
+        found
+    );
+
 
     getDictionaryData(
         found.word
     );
+
 }
 
 
-function handleSearchKey(event) {
+function handleSearchKey(
+    event
+) {
 
-    if (event.key === "Enter") {
+    if (
+        event.key === "Enter"
+    ) {
+
         searchWord();
+
     }
+
 }
 
 
-// --------------------------------------------------
+// ==================================================
 // ALPHABET
-// --------------------------------------------------
+// ==================================================
 
 function buildAlphabet() {
 
@@ -1064,25 +1550,28 @@ function buildAlphabet() {
             "alphabet"
         );
 
+
     container.innerHTML = "";
 
-
-    // ALL
 
     const all =
         document.createElement(
             "button"
         );
 
+
     all.className =
         "letter";
+
 
     all.textContent =
         "ALL";
 
+
     all.onclick = () => {
 
-        currentLetter = null;
+        currentLetter =
+            null;
 
         updateActiveLetter();
 
@@ -1090,10 +1579,11 @@ function buildAlphabet() {
 
     };
 
-    container.appendChild(all);
 
+    container.appendChild(
+        all
+    );
 
-    // A-Z
 
     for (
         let i = 65;
@@ -1104,16 +1594,20 @@ function buildAlphabet() {
         const letter =
             String.fromCharCode(i);
 
+
         const button =
             document.createElement(
                 "button"
             );
 
+
         button.className =
             "letter";
 
+
         button.textContent =
             letter;
+
 
         button.dataset.letter =
             letter.toLowerCase();
@@ -1124,7 +1618,9 @@ function buildAlphabet() {
             currentLetter =
                 letter.toLowerCase();
 
+
             updateActiveLetter();
+
 
             newWord(
                 currentLetter
@@ -1133,42 +1629,50 @@ function buildAlphabet() {
         };
 
 
-        container.appendChild(button);
+        container.appendChild(
+            button
+        );
 
     }
+
 }
 
 
 function updateActiveLetter() {
 
     document
-        .querySelectorAll(".letter")
-        .forEach(button => {
+        .querySelectorAll(
+            ".letter"
+        )
+        .forEach(
+            button => {
 
-            button.classList.remove(
-                "active"
-            );
-
-            if (
-                currentLetter &&
-                button.dataset.letter ===
-                currentLetter
-            ) {
-
-                button.classList.add(
+                button.classList.remove(
                     "active"
                 );
 
-            }
 
-        });
+                if (
+                    currentLetter &&
+                    button.dataset.letter
+                    === currentLetter
+                ) {
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
 
 }
 
 
-// --------------------------------------------------
-// PRONOUNCE
-// --------------------------------------------------
+// ==================================================
+// PRONUNCIATION
+// ==================================================
 
 function pronounce() {
 
@@ -1180,18 +1684,24 @@ function pronounce() {
     if (audioURL) {
 
         const audio =
-            new Audio(audioURL);
+            new Audio(
+                audioURL
+            );
+
 
         audio.play()
-            .catch(() => {
-                speakWord();
-            });
+            .catch(
+                () => speakWord()
+            );
+
 
         return;
+
     }
 
 
     speakWord();
+
 }
 
 
@@ -1202,10 +1712,11 @@ function speakWord() {
     ) {
 
         setStatus(
-            "Speech is not supported"
+            "Speech not supported"
         );
 
         return;
+
     }
 
 
@@ -1217,63 +1728,102 @@ function speakWord() {
             currentWord.word
         );
 
-    speech.lang = "en-US";
 
-    speech.rate = 0.8;
+    speech.lang =
+        "en-US";
+
+
+    speech.rate =
+        0.8;
 
 
     speechSynthesis.speak(
         speech
     );
+
 }
 
 
-// --------------------------------------------------
-// STATUS
-// --------------------------------------------------
+// ==================================================
+// SAFE HTML
+// ==================================================
 
-function setStatus(message) {
+function escapeHTML(
+    text
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+// ==================================================
+// STATUS
+// ==================================================
+
+function setStatus(
+    message
+) {
 
     document.getElementById(
         "status"
     ).textContent =
         message;
+
 }
 
 
-// --------------------------------------------------
-// 30 SECOND TIMER
-// --------------------------------------------------
+// ==================================================
+// TIMER
+// ==================================================
 
-setInterval(() => {
+setInterval(
+    () => {
 
-    secondsRemaining--;
-
-    if (
-        secondsRemaining <= 0
-    ) {
-
-        secondsRemaining = 30;
-
-        newWord(
-            currentLetter
-        );
-
-    }
-
-    document.getElementById(
-        "timer"
-    ).textContent =
-        "Next word in " +
-        secondsRemaining +
-        " seconds";
-
-}, 1000);
+        secondsRemaining--;
 
 
-// --------------------------------------------------
+        if (
+            secondsRemaining <= 0
+        ) {
+
+            secondsRemaining =
+                30;
+
+
+            newWord(
+                currentLetter
+            );
+
+        }
+
+
+        document.getElementById(
+            "timer"
+        ).textContent =
+
+            "Next word in " +
+            secondsRemaining +
+            " seconds";
+
+    },
+    1000
+);
+
+
+// ==================================================
 // START
-// --------------------------------------------------
+// ==================================================
 
 loadWords();
 
